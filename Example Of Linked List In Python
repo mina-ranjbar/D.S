@@ -1,0 +1,624 @@
+#Example 1
+class Node:
+   def __init__(self, dataval=None):
+      self.dataval = dataval
+      self.nextval = None
+
+class SLinkedList:
+   def __init__(self):
+      self.headval = None
+
+   def listprint(self):
+      printval = self.headval
+      while printval is not None:
+         print (printval.dataval)
+         printval = printval.nextval
+
+list = SLinkedList()
+list.headval = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+# Link first Node to second node
+list.headval.nextval = e2
+
+# Link second Node to third node
+e2.nextval = e3
+
+list.listprint()
+
+#Output:
+Mon
+Tue
+Wed
+
+
+
+#Example 2
+class Node:
+   def __init__(self, dataval=None):
+      self.dataval = dataval
+      self.nextval = None
+class SLinkedList:
+   def __init__(self):
+      self.headval = None
+# Function to add newnode
+   def AtEnd(self, newdata):
+      NewNode = Node(newdata)
+      if self.headval is None:
+         self.headval = NewNode
+         return
+      laste = self.headval
+      while(laste.nextval):
+         laste = laste.nextval
+      laste.nextval=NewNode
+# Print the linked list
+   def listprint(self):
+      printval = self.headval
+      while printval is not None:
+         print (printval.dataval)
+         printval = printval.nextval
+
+list = SLinkedList()
+list.headval = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Wed")
+
+list.headval.nextval = e2
+e2.nextval = e3
+
+list.AtEnd("Thu")
+
+list.listprint()
+
+
+#Output:
+Mon
+Tue
+Wed
+Thu
+
+
+#Example 3
+class Node:
+   def __init__(self, dataval=None):
+      self.dataval = dataval
+      self.nextval = None
+class SLinkedList:
+   def __init__(self):
+      self.headval = None
+
+# Function to add node
+   def Inbetween(self,middle_node,newdata):
+      if middle_node is None:
+         print("The mentioned node is absent")
+         return
+
+      NewNode = Node(newdata)
+      NewNode.nextval = middle_node.nextval
+      middle_node.nextval = NewNode
+
+# Print the linked list
+   def listprint(self):
+      printval = self.headval
+      while printval is not None:
+         print (printval.dataval)
+         printval = printval.nextval
+
+list = SLinkedList()
+list.headval = Node("Mon")
+e2 = Node("Tue")
+e3 = Node("Thu")
+
+list.headval.nextval = e2
+e2.nextval = e3
+
+list.Inbetween(list.headval.nextval,"Fri")
+
+list.listprint()
+
+
+#Output:
+Mon
+Tue
+Fri
+Thu
+
+
+#Example 4
+# A single node of a singly linked list
+class Node:
+  # constructor
+  def __init__(self, data = None, next=None):
+    self.data = data
+    self.next = next
+
+# A Linked List class with a single head node
+class LinkedList:
+  def __init__(self):
+    self.head = None
+
+  # insertion method for the linked list
+  def insert(self, data):
+    newNode = Node(data)
+    if(self.head):
+      current = self.head
+      while(current.next):
+        current = current.next
+      current.next = newNode
+    else:
+      self.head = newNode
+
+  # print method for the linked list
+  def printLL(self):
+    current = self.head
+    while(current):
+      print(current.data)
+      current = current.next
+
+# Singly Linked List with insertion and print methods
+LL = LinkedList()
+LL.insert(3)
+LL.insert(4)
+LL.insert(5)
+LL.printLL()
+
+
+#Output:
+3
+4
+5
+
+
+#Example 5
+class node:
+    def __init__(self, value = None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+
+
+class node:
+    def __init__ (self, value = None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+node6 = node('elem6')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+node5.next = node6
+
+pointer = head
+
+while(pointer!=None):
+    print(pointer.value)
+    pointer=pointer.next
+
+
+#Output:
+elem1
+elem2
+elem3
+elem4
+elem5
+elem6
+
+
+
+#Example 6
+class node:
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+
+
+#  Insertion of New Node In Beginning
+
+nodeInBeginning = node('new node')
+nodeInBeginning.next = head
+head = nodeInBeginning
+
+
+pointer = head
+
+while(pointer!=None):
+    print(pointer.value)
+    pointer=pointer.next
+
+
+#Output:
+new node
+elem1
+elem2
+elem3
+elem4
+elem5
+
+
+
+#Example 7
+class node:
+    def __init__(self, value=None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+
+
+#  Insertion of New Node In the Middle
+
+after = 'elem2'
+
+nodeInMiddle = node('new node')
+
+pointer = head
+
+while(pointer):
+    if(pointer.value == after):
+        nodeInMiddle.next = pointer.next
+        pointer.next = nodeInMiddle
+
+        break
+    else:
+        pointer = pointer.next
+
+
+pointer = head
+
+while(pointer!=None):
+    print(pointer.value)
+    pointer=pointer.next
+
+
+#Output:
+elem1
+elem2
+new node
+elem3
+elem4
+elem5
+
+
+
+#Example 8
+class node:
+    def __init__(self, value = None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+
+
+#  Insertion of New Node at the End
+
+nodeAtEnd = node('new node')
+
+pointer = head
+
+while(pointer.next!=None):
+    pointer = pointer.next
+
+pointer.next = nodeAtEnd
+
+pointer = head
+
+while(pointer!=None):
+    print(pointer.value)
+    pointer=pointer.next
+
+
+#Output:
+elem1
+elem2
+elem3
+elem4
+elem5
+new node
+
+
+
+#Example 9
+class node:
+    def __init__(self, value = None):
+        self.value = value
+        self.next = None
+
+node1 = node('elem1')
+
+head = node1
+
+node2 = node('elem2')
+node3 = node('elem3')
+node4 = node('elem4')
+node5 = node('elem5')
+
+node1.next = node2
+node2.next = node3
+node3.next = node4
+node4.next = node5
+
+# Deletion of Node from the Beginning of the LinkedList
+head = head.next
+
+pointer = head
+
+while(pointer!=None):
+    print(pointer.value)
+    pointer=pointer.next
+
+
+#Output:
+elem2
+elem3
+elem4
+elem5
+
+
+
+#Example 10
+# Create a Node class to create a node
+class Node:
+	def __init__(self, data):
+		self.data = data
+		self.next = None
+
+# Create a LinkedList class
+
+
+class LinkedList:
+	def __init__(self):
+		self.head = None
+
+	# Method to add a node at begin of LL
+	def insertAtBegin(self, data):
+		new_node = Node(data)
+		if self.head is None:
+			self.head = new_node
+			return
+		else:
+			new_node.next = self.head
+			self.head = new_node
+
+	# Method to add a node at any index
+	# Indexing starts from 0.
+	def insertAtIndex(self, data, index):
+		new_node = Node(data)
+		current_node = self.head
+		position = 0
+		if position == index:
+			self.insertAtBegin(data)
+		else:
+			while(current_node != None and position+1 != index):
+				position = position+1
+				current_node = current_node.next
+
+			if current_node != None:
+				new_node.next = current_node.next
+				current_node.next = new_node
+			else:
+				print("Index not present")
+
+	# Method to add a node at the end of LL
+
+	def insertAtEnd(self, data):
+		new_node = Node(data)
+		if self.head is None:
+			self.head = new_node
+			return
+
+		current_node = self.head
+		while(current_node.next):
+			current_node = current_node.next
+
+		current_node.next = new_node
+
+	# Update node of a linked list
+		# at given position
+	def updateNode(self, val, index):
+		current_node = self.head
+		position = 0
+		if position == index:
+			current_node.data = val
+		else:
+			while(current_node != None and position != index):
+				position = position+1
+				current_node = current_node.next
+
+			if current_node != None:
+				current_node.data = val
+			else:
+				print("Index not present")
+
+	# Method to remove first node of linked list
+
+	def remove_first_node(self):
+		if(self.head == None):
+			return
+
+		self.head = self.head.next
+
+	# Method to remove last node of linked list
+	def remove_last_node(self):
+
+		if self.head is None:
+			return
+
+		current_node = self.head
+		while(current_node.next.next):
+			current_node = current_node.next
+
+		current_node.next = None
+
+	# Method to remove at given index
+	def remove_at_index(self, index):
+		if self.head == None:
+			return
+
+		current_node = self.head
+		position = 0
+		if position == index:
+			self.remove_first_node()
+		else:
+			while(current_node != None and position+1 != index):
+				position = position+1
+				current_node = current_node.next
+
+			if current_node != None:
+				current_node.next = current_node.next.next
+			else:
+				print("Index not present")
+
+	# Method to remove a node from linked list
+	def remove_node(self, data):
+		current_node = self.head
+
+		if current_node.data == data:
+			self.remove_first_node()
+			return
+
+		while(current_node != None and current_node.next.data != data):
+			current_node = current_node.next
+
+		if current_node == None:
+			return
+		else:
+			current_node.next = current_node.next.next
+
+	# Print the size of linked list
+	def sizeOfLL(self):
+		size = 0
+		if(self.head):
+			current_node = self.head
+			while(current_node):
+				size = size+1
+				current_node = current_node.next
+			return size
+		else:
+			return 0
+
+	# print method for the linked list
+	def printLL(self):
+		current_node = self.head
+		while(current_node):
+			print(current_node.data)
+			current_node = current_node.next
+
+
+# create a new linked list
+llist = LinkedList()
+
+# add nodes to the linked list
+llist.insertAtEnd('a')
+llist.insertAtEnd('b')
+llist.insertAtBegin('c')
+llist.insertAtEnd('d')
+llist.insertAtIndex('g', 2)
+
+# print the linked list
+print("Node Data")
+llist.printLL()
+
+# remove a nodes from the linked list
+print("\nRemove First Node")
+llist.remove_first_node()
+print("Remove Last Node")
+llist.remove_last_node()
+print("Remove Node at Index 1")
+llist.remove_at_index(1)
+
+
+# print the linked list again
+print("\nLinked list after removing a node:")
+llist.printLL()
+
+print("\nUpdate node Value")
+llist.updateNode('z', 0)
+llist.printLL()
+
+print("\nSize of linked list :", end=" ")
+print(llist.sizeOfLL())
+
+
+#Output:
+Node Data
+c
+a
+g
+b
+d
+
+Remove First Node
+Remove Last Node
+Remove Node at Index 1
+
+Linked list after removing a node:
+a
+b
+
+Update node Value
+z
+b
+
+Size of linked list : 2
