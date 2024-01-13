@@ -1,0 +1,224 @@
+#Example 1
+# Python3 Optimized implementation
+# of Bubble sort
+
+# An optimized version of Bubble Sort
+def bubbleSort(arr):
+    n = len(arr)
+
+    # Traverse through all array elements
+    for i in range(n):
+        swapped = False
+
+        # Last i elements are already
+        #  in place
+        for j in range(0, n-i-1):
+
+            # traverse the array from 0 to
+            # n-i-1. Swap if the element
+            # found is greater than the
+            # next element
+            if arr[j] > arr[j+1] :
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                swapped = True
+
+        # IF no two elements were swapped
+        # by inner loop, then break
+        if swapped == False:
+            break
+
+# Driver code to test above
+arr = [64, 34, 25, 12, 22, 11, 90]
+
+bubbleSort(arr)
+
+print ("Sorted array :")
+for i in range(len(arr)):
+    print ("%d" %arr[i],end=" ")
+
+# This code is contributed by Shreyanshi Arun
+
+
+#output:
+Sorted array :
+11 12 22 25 34 64 90 
+
+
+#Example 2
+def bubble_sort(items):
+    n = len(items)
+
+    for i in range(n-1):
+
+        for j in range(n-i-1):
+
+            # traverse the list from 0 to n-i-1
+            # Swap if the element found is greater than the next element
+            if items[j] > items[j+1] :
+                items[j], items[j+1] = items[j+1], items[j]
+
+    return items
+    
+mylist = [5,3,4,2,1]
+bubble_sort(mylist)
+
+    #output:
+[1, 2, 3, 4, 5]
+
+
+#Example 3
+# Optimized Python program for implementation of Bubble Sort
+
+
+def bubbleSort(arr):
+	n = len(arr)
+
+	# Traverse through all array elements
+	for i in range(n):
+		swapped = False
+
+		# Last i elements are already in place
+		for j in range(0, n-i-1):
+
+			# Traverse the array from 0 to n-i-1
+			# Swap if the element found is greater
+			# than the next element
+			if arr[j] > arr[j+1]:
+				arr[j], arr[j+1] = arr[j+1], arr[j]
+				swapped = True
+		if (swapped == False):
+			break
+
+
+# Driver code to test above
+if __name__ == "__main__":
+	arr = [64, 34, 25, 12, 22, 11, 90]
+
+	bubbleSort(arr)
+
+	print("Sorted array:")
+	for i in range(len(arr)):
+		print("%d" % arr[i], end=" ")
+
+# This code is modified by Suraj krushna Yadav
+
+#output:
+Sorted array:
+11 12 22 25 34 64 90
+
+
+#Example 4
+# Python Program for implementation of
+# Recursive Bubble sort
+class bubbleSort:
+	"""
+	bubbleSort:
+		function:
+			bubbleSortRecursive : recursive
+				function to sort array
+			__str__ : format print of array
+			__init__ : constructor
+				function in python
+		variables:
+			self.array = contains array
+			self.length = length of array
+	"""
+
+	def __init__(self, array):
+		self.array = array
+		self.length = len(array)
+
+	def __str__(self):
+		return " ".join([str(x)
+						for x in self.array])
+
+	def bubbleSortRecursive(self, n=None):
+		if n is None:
+			n = self.length
+		count = 0
+
+		# Base case
+		if n == 1:
+			return
+		# One pass of bubble sort. After
+		# this pass, the largest element
+		# is moved (or bubbled) to end.
+		for i in range(n - 1):
+			if self.array[i] > self.array[i + 1]:
+				self.array[i], self.array[i +
+				1] = self.array[i + 1], self.array[i]
+				count = count + 1
+
+		# Check if any recursion happens or not
+		# If any recursion is not happen then return
+		if (count==0):
+			return
+
+		# Largest element is fixed,
+		# recur for remaining array
+		self.bubbleSortRecursive(n - 1)
+
+# Driver Code
+def main():
+	array = [64, 34, 25, 12, 22, 11, 90]
+
+	# Creating object for class
+	sort = bubbleSort(array)
+
+	# Sorting array
+	sort.bubbleSortRecursive()
+	print("Sorted array :\n", sort)
+
+
+if __name__ == "__main__":
+	main()
+
+# Code contributed by Mohit Gupta_OMG,
+# improved by itsvinayak
+# Code improved by Susobhan Akhuli
+
+#output:
+Sorted array :
+ 11 12 22 25 34 64 90
+
+
+#Example 5
+# Python Implementation
+
+
+def compare(a, b):
+	return ((a < b) - (a > b))
+
+
+def sort_string(arr, n):
+	temp = ""
+
+	# Sort string using the bubble sort
+	for i in range(n-1):
+		for j in range(i+1, n):
+			if compare(arr[j], arr[i]) > 0:
+				temp = arr[j]
+				arr[j] = arr[i]
+				arr[i] = temp
+	print("String in sorted order are: ")
+	for i in range(n):
+		print(f'Strings {i + 1} is {arr[i]}')
+
+
+# Driver code
+arr = ["GeeksforGeeks", "Quiz", "Practice", "Gblogs", "Coding"]
+n = len(arr)
+sort_string(arr, n)
+
+
+# This code is contributed by Prince Kumar
+
+#output:
+String in sorted order are: 
+Strings 1 is Coding
+Strings 2 is Gblogs
+Strings 3 is GeeksforGeeks
+Strings 4 is Practice
+Strings 5 is Quiz
+
+    
