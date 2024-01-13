@@ -1,0 +1,234 @@
+import sqlite3
+
+# Create a connection to an in-memory SQLite database
+connection = sqlite3.connect(':memory:')
+
+# Create a cursor object to interact with the database
+cursor = connection.cursor()
+### Create Table (student)
+cursor.execute('''
+CREATE TABLE student (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    gender TEXT NOT NULL
+);
+''')
+
+#output:
+<sqlite3.Cursor at 0x7fac11f7edc0>
+
+data_to_insert = [
+    ('Parham', 20, 'Male'),
+    ('Mahsa', 22, 'Female'),
+    ('Saman', 28, 'Male'),
+    ('Neda', 21, 'Female'),
+    ('Amir', 25, 'Male'),
+    ('Mina', 23, 'Female'),
+    ('Lalah', 22, 'Female'),
+    ('Hamed', 26, 'Male'),
+    ('Maryam', 24, 'Female'),
+    ('Farid', 21, 'Male')
+]
+
+# Insert data into the table
+# Insert data into the table
+cursor.executemany('INSERT INTO student (name, age, gender) VALUES (?, ?, ?)', data_to_insert)
+
+# Commit the changes
+connection.commit()
+
+cursor.execute('SELECT * FROM student')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+    
+#output:
+cursor.execute('SELECT * FROM student')rows = cursor.fetchall()for row in rows:    print(row)
+
+(1, 'Parham', 20, 'Male')
+(2, 'Mahsa', 22, 'Female')
+(3, 'Saman', 28, 'Male')
+(4, 'Neda', 21, 'Female')
+(5, 'Amir', 25, 'Male')
+(6, 'Mina', 23, 'Female')
+(7, 'Lalah', 22, 'Female')
+(8, 'Hamed', 26, 'Male')
+(9, 'Maryam', 24, 'Female')
+(10, 'Farid', 21, 'Male')
+
+## Create Table (courses)
+# Create the 'courses' table with a foreign key reference to the 'student' table
+cursor.execute('''
+    CREATE TABLE courses (
+                       id integer PRIMARY KEY,
+                       course_name text NOT NULL,
+                       teacher text NOT NULL,
+                       student_id integer,
+                       FOREIGN KEY (student_id) REFERENCES students (id)
+                   )
+''')
+
+
+#output:
+<sqlite3.Cursor at 0x7fac11f7edc0>
+
+# Insert data into the 'courses' table with references to the 'student' table
+addresses_data = [
+   ('Python Programming', 'Tina', 1),
+   ('Mathematics', 'Sahar', 2),
+   ('Biology', 'Nima', 3),
+   ('Geography', 'Asal', 4),
+   ('Machine Learning', 'Soheil', 5),
+   ('Data Mining', 'Farnaz', 6),
+   ('Probability', 'Pouya', 7),
+   ('Data Structure', 'Raha', 8),
+   ('History', 'Dara', 9),
+   ('English', 'Elnaz', 10)
+]
+
+cursor.executemany('INSERT INTO courses(course_name,teacher,student_id)VALUES(?,?,?)' , addresses_data)
+
+# Commit the changes
+connection.commit()
+
+cursor.execute('SELECT * FROM courses')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+    #output:
+    
+(1, 'Python Programming', 'Tina', 1)
+(2, 'Mathematics', 'Sahar', 2)
+(3, 'Biology', 'Nima', 3)
+(4, 'Geography', 'Asal', 4)
+(5, 'Machine Learning', 'Soheil', 5)
+(6, 'Data Mining', 'Farnaz', 6)
+(7, 'Probability', 'Pouya', 7)
+(8, 'Data Structure', 'Raha', 8)
+(9, 'History', 'Dara', 9)
+(10, 'English', 'Elnaz', 10)
+
+
+# delete a student
+# Assuming you want to delete the student with id = 5
+student_id_to_delete = 5
+
+# Delete the student
+cursor.execute('DELETE FROM students WHERE id = ?', (student_id_to_delete,))
+
+# Commit the changes
+connection.commit()
+
+# Display the updated records
+cursor.execute('SELECT * FROM students')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+    #output:
+    (1, 'Parham', 20, 'Male')
+(2, 'Mahsa', 22, 'Female')
+(3, 'Saman', 28, 'Male')
+(4, 'Neda', 21, 'Female')
+(6, 'Mina', 23, 'Female')
+(7, 'Lalah', 22, 'Female')
+(8, 'Hamed', 26, 'Male')
+(9, 'Maryam', 24, 'Female')
+(10, 'Farid', 21, 'Male')
+
+# delete a course 
+# Assuming you want to delete the course with the name 'Machine Learning'
+course_name_to_delete = 'Machine Learning'
+
+# Delete the course
+cursor.execute('DELETE FROM courses WHERE course_name = ?', (course_name_to_delete,))
+
+# Commit the changes
+connection.commit()
+
+# Display the updated records
+cursor.execute('SELECT * FROM courses')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+    #output:
+   
+ (1, 'Python Programming', 'Tina', 1)
+(2, 'Mathematics', 'Sahar', 2)
+(3, 'Biology', 'Nima', 3)
+(4, 'Geography', 'Asal', 4)
+(6, 'Data Mining', 'Farnaz', 6)
+(7, 'Probability', 'Pouya', 7)
+(8, 'Data Structure', 'Raha', 8)
+(9, 'History', 'Dara', 9)
+(10, 'English', 'Elnaz', 10)
+
+# Using  ORDER BY, LIMIT (student)
+
+# Delete the oldest student
+cursor.execute('''
+    DELETE FROM students
+    WHERE id = (
+        SELECT id
+        FROM students
+        ORDER BY age DESC
+        LIMIT 1
+    )
+''')
+
+# Commit the changes
+connection.commit()
+
+# Display the updated records
+cursor.execute('SELECT * FROM students')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+    #output:
+    
+ (1, 'Parham', 20, 'Male')
+(2, 'Mahsa', 22, 'Female')
+(4, 'Neda', 21, 'Female')
+(6, 'Mina', 23, 'Female')
+(7, 'Lalah', 22, 'Female')
+(8, 'Hamed', 26, 'Male')
+(9, 'Maryam', 24, 'Female')
+(10, 'Farid', 21, 'Male')
+
+# Using (MIN)
+
+# Delete the course with the minimum ID
+
+cursor.execute('''
+    DELETE FROM courses
+    WHERE id = (
+        SELECT MIN(id)
+        FROM courses
+    )
+''')
+
+# Commit the changes
+connection.commit()
+
+# Display the updated records
+cursor.execute('SELECT * FROM courses')
+rows = cursor.fetchall()
+for row in rows:
+    print(row)
+
+
+#output:
+
+(2, 'Mathematics', 'Sahar', 2)
+(3, 'Biology', 'Nima', 3)
+(4, 'Geography', 'Asal', 4)
+(6, 'Data Mining', 'Farnaz', 6)
+(7, 'Probability', 'Pouya', 7)
+(8, 'Data Structure', 'Raha', 8)
+(9, 'History', 'Dara', 9)
+(10, 'English', 'Elnaz', 10)
