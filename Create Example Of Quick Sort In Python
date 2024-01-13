@@ -1,0 +1,253 @@
+#Example 1
+# Quick sort in Python
+
+# function to find the partition position
+def partition(array, low, high):
+
+  # choose the rightmost element as pivot
+  pivot = array[high]
+
+  # pointer for greater element
+  i = low - 1
+
+  # traverse through all elements
+  # compare each element with pivot
+  for j in range(low, high):
+    if array[j] <= pivot:
+      # if element smaller than pivot is found
+      # swap it with the greater element pointed by i
+      i = i + 1
+
+      # swapping element at i with element at j
+      (array[i], array[j]) = (array[j], array[i])
+
+  # swap the pivot element with the greater element specified by i
+  (array[i + 1], array[high]) = (array[high], array[i + 1])
+
+  # return the position from where partition is done
+  return i + 1
+
+# function to perform quicksort
+def quickSort(array, low, high):
+  if low < high:
+
+    # find pivot element such that
+    # element smaller than pivot are on the left
+    # element greater than pivot are on the right
+    pi = partition(array, low, high)
+
+    # recursive call on the left of pivot
+    quickSort(array, low, pi - 1)
+
+    # recursive call on the right of pivot
+    quickSort(array, pi + 1, high)
+
+
+data = [8, 7, 2, 1, 0, 9, 6]
+print("Unsorted Array")
+print(data)
+
+size = len(data)
+
+quickSort(data, 0, size - 1)
+
+print('Sorted Array in Ascending Order:')
+print(data)
+
+#output:
+Unsorted Array
+[8, 7, 2, 1, 0, 9, 6]
+Sorted Array in Ascending Order:
+[0, 1, 2, 6, 7, 8, 9]
+
+
+#Example 2
+def QuickSort(arr):
+
+    elements = len(arr)
+
+    #Base case
+    if elements < 2:
+        return arr
+
+    current_position = 0 #Position of the partitioning element
+
+    for i in range(1, elements): #Partitioning loop
+         if arr[i] <= arr[0]:
+              current_position += 1
+              temp = arr[i]
+              arr[i] = arr[current_position]
+              arr[current_position] = temp
+
+    temp = arr[0]
+    arr[0] = arr[current_position]
+    arr[current_position] = temp #Brings pivot to it's appropriate position
+
+    left = QuickSort(arr[0:current_position]) #Sorts the elements to the left of pivot
+    right = QuickSort(arr[current_position+1:elements]) #sorts the elements to the right of pivot
+
+    arr = left + [arr[current_position]] + right #Merging everything together
+
+    return arr
+
+
+
+array_to_be_sorted = [4,2,7,3,1,6]
+print("Original Array: ",array_to_be_sorted)
+print("Sorted Array: ",QuickSort(array_to_be_sorted))
+
+#output:
+Original Array:  [4, 2, 7, 3, 1, 6]
+Sorted Array:  [1, 2, 3, 4, 6, 7]
+
+
+#Example 3
+# Python program for implementation of Quicksort Sort
+
+# This implementation utilizes pivot as the last element in the nums list
+# It has a pointer to keep track of the elements smaller than the pivot
+# At the very end of partition() function, the pointer is swapped with the pivot
+# to come up with a "sorted" nums relative to the pivot
+
+
+# Function to find the partition position
+def partition(array, low, high):
+
+	# choose the rightmost element as pivot
+	pivot = array[high]
+
+	# pointer for greater element
+	i = low - 1
+
+	# traverse through all elements
+	# compare each element with pivot
+	for j in range(low, high):
+		if array[j] <= pivot:
+
+			# If element smaller than pivot is found
+			# swap it with the greater element pointed by i
+			i = i + 1
+
+			# Swapping element at i with element at j
+			(array[i], array[j]) = (array[j], array[i])
+
+	# Swap the pivot element with the greater element specified by i
+	(array[i + 1], array[high]) = (array[high], array[i + 1])
+
+	# Return the position from where partition is done
+	return i + 1
+
+# function to perform quicksort
+
+
+def quickSort(array, low, high):
+	if low < high:
+
+		# Find pivot element such that
+		# element smaller than pivot are on the left
+		# element greater than pivot are on the right
+		pi = partition(array, low, high)
+
+		# Recursive call on the left of pivot
+		quickSort(array, low, pi - 1)
+
+		# Recursive call on the right of pivot
+		quickSort(array, pi + 1, high)
+
+
+data = [1, 7, 4, 1, 10, 9, -2]
+print("Unsorted Array")
+print(data)
+
+size = len(data)
+
+quickSort(data, 0, size - 1)
+
+print('Sorted Array in Ascending Order:')
+print(data)
+
+
+#output:
+Unsorted Array
+[1, 7, 4, 1, 10, 9, -2]
+Sorted Array in Ascending Order:
+[-2, 1, 1, 4, 7, 9, 10]
+
+
+#Example 4
+# Approach 2: Quicksort using list comprehension
+
+def quicksort(arr):
+	if len(arr) <= 1:
+		return arr
+	else:
+		pivot = arr[0]
+		left = [x for x in arr[1:] if x < pivot]
+		right = [x for x in arr[1:] if x >= pivot]
+		return quicksort(left) + [pivot] + quicksort(right)
+
+# Example usage
+arr = [1, 7, 4, 1, 10, 9, -2]
+sorted_arr = quicksort(arr)
+print("Sorted Array in Ascending Order:")
+print(sorted_arr)
+
+
+#output:
+Sorted Array in Ascending Order:
+[-2, 1, 1, 4, 7, 9, 10]
+
+
+#Example 5
+def partition(array, start, end):
+    pivot = array[start]
+    low = start + 1
+    high = end
+
+    while True:
+        # If the current value we're looking at is larger than the pivot
+        # it's in the right place (right side of pivot) and we can move left,
+        # to the next element.
+        # We also need to make sure we haven't surpassed the low pointer, since that
+        # indicates we have already moved all the elements to their correct side of the pivot
+        while low <= high and array[high] >= pivot:
+            high = high - 1
+
+        # Opposite process of the one above
+        while low <= high and array[low] <= pivot:
+            low = low + 1
+
+        # We either found a value for both high and low that is out of order
+        # or low is higher than high, in which case we exit the loop
+        if low <= high:
+            array[low], array[high] = array[high], array[low]
+            # The loop continues
+        else:
+            # We exit out of the loop
+            break
+
+    array[start], array[high] = array[high], array[start]
+
+    return high
+
+def quick_sort(array, start, end):
+    if start >= end:
+        return
+
+    p = partition(array, start, end)
+    quick_sort(array, start, p-1)
+    quick_sort(array, p+1, end)
+
+    array = [29,99,27,41,66,28,44,78,87,19,31,76,58,88,83,97,12,21,44]
+
+quick_sort(array, 0, len(array) - 1)
+print(array)
+
+    #output:
+    [12, 19, 21, 27, 28, 29, 31, 41, 44, 44, 58, 66, 76, 78, 83, 87, 88, 97, 99]
+
+
+
+
+
+
