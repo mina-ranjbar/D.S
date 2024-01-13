@@ -1,0 +1,223 @@
+#Example 1
+List = ["python",12,"matlab",45]
+print(List)
+
+List1 = ["Day","12",23,"#","de45","rt%","56!"]
+print(List1)
+
+print(List1[:])
+print(List1[1])
+print(List1[2])
+print(List1[1:3])
+print(List1[2:])
+print(List1[2:2])
+print(List1[2:11])
+
+Length = len(List1)
+print(Length)
+print(List1[Length - 1])
+print(List1[len(List1) - 1])
+
+List = ["python",12,"matlab",45]
+print(List)
+
+List1 = ["Day","12",23,"#","de45","rt%","56!"]
+print(List1)
+
+#output:
+['python', 12, 'matlab', 45]
+['Day', '12', 23, '#', 'de45', 'rt%', '56!']
+['Day', '12', 23, '#', 'de45', 'rt%', '56!']
+12
+23
+['12', 23]
+[23, '#', 'de45', 'rt%', '56!']
+[]
+[23, '#', 'de45', 'rt%', '56!']
+7
+56!
+56!
+
+
+#Example 2
+Day = ["saturday","sunday","monday","tuesday","wednesday"]
+len(Day)
+count = 0
+print("Today is: ", Day[count])
+
+count = 3
+print("Today is: ", Day[count])
+
+Day1 = [1394,"30",["Dey","Bahman"],"aban",3.14]
+print(len(Day1))
+
+print(Day1[2])
+print(Day1[3])
+print(Day1[3][1])
+print(Day1[2][1][2])
+print(Day1[-3])
+print(Day1[-3][1][-4])
+
+#ouput:
+Today is:  saturday
+Today is:  tuesday
+5
+['Dey', 'Bahman']
+aban
+b
+h
+['Dey', 'Bahman']
+h
+
+
+#Example 3
+L1 = [1394,"30",["Dey","Bahman",[],["Azar"]],"aban",3.14,[23,"45"]]
+len(L1)
+print(L1[2])
+print(L1[2][3])
+print(L1[2][3][0])
+print(L1[2][3][0][2])
+
+#output:
+['Dey', 'Bahman', [], ['Azar']]
+['Azar']
+Azar
+a
+
+
+#Example 4
+L2 = [100,200,300,400,500]
+len(L2)
+L2[0] = 50
+print(L2)
+
+L2[1:3] = [600,700]
+print(L2)
+
+L2 = [50, 600, 700, 400, 500]
+L2[:] = []
+print(L2)
+
+L2 = [50, 600, 700, 400, 500]
+print(600 in L2)
+print("f" not in L2)
+
+#output:
+[50, 200, 300, 400, 500]
+[50, 600, 700, 400, 500]
+[]
+True
+True
+
+
+#Example 5
+L2 = [400,200,300,500]
+L3 = [1,2,3,4,5]
+L2 =L2 + L3
+print(L2)
+
+L3 = L3*2
+print(L3)
+
+print(["a",2]*8)
+
+L2 = [50, 600, 700, 400, 500]
+L2[:] = []
+print(L2)
+
+L2 = [50, 600, 700, 400, 500]
+del(L2)
+print(L2)
+
+#output:
+[400, 200, 300, 500, 1, 2, 3, 4, 5]
+[1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+['a', 2, 'a', 2, 'a', 2, 'a', 2, 'a', 2, 'a', 2, 'a', 2, 'a', 2]
+[]
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-7-dc78daf60500> in <cell line: 17>()
+     15 L2 = [50, 600, 700, 400, 500]
+     16 del(L2)
+---> 17 print(L2)
+
+NameError: name 'L2' is not defined
+
+
+#Example 6
+Listx = ["math","physics","arabic"]
+print(Listx)
+
+Listx.append("Algebra")
+print(Listx)
+
+Listx.append(45)
+print(Listx)
+
+Listx.remove(45)
+print(Listx)
+
+Listx = ["math","physics","arabic"]
+print(Listx.index("math"))
+
+print(Listx.count("math"))
+
+print(Listx.count("algebra"))
+
+
+Listx.extend(Listx)
+print(Listx)
+
+Listx.extend(["English","chemistry"])
+print(Listx)
+
+Listx.insert(4,"farsi")
+print(Listx)
+
+print(len(Listx))
+
+Listy = [1,4,9,2,3,7]
+Listy.sort()
+print(Listy)
+
+Listz = ["d","a","z","s"]
+Listz.sort()
+print(Listz)
+
+#output:
+['math', 'physics', 'arabic']
+['math', 'physics', 'arabic', 'Algebra']
+['math', 'physics', 'arabic', 'Algebra', 45]
+['math', 'physics', 'arabic', 'Algebra']
+0
+1
+0
+['math', 'physics', 'arabic', 'math', 'physics', 'arabic']
+['math', 'physics', 'arabic', 'math', 'physics', 'arabic', 'English', 'chemistry']
+['math', 'physics', 'arabic', 'math', 'farsi', 'physics', 'arabic', 'English', 'chemistry']
+9
+[1, 2, 3, 4, 7, 9]
+['a', 'd', 's', 'z']
+
+
+#Example 7
+List2 = ["23",1394,"Day","Year"]
+
+print(List2[-2])
+print(List2[2])
+print(List2[3][1])
+print(List2[-1][-3])
+print(List2[3][-3])
+print(List2[-1][1])
+
+#output:
+Day
+Day
+e
+e
+e
+e
+
+
+
+
